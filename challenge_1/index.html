@@ -1,2 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      h1 {
+        text-align: center;
+        font-size: 75px;
+        color: rgb(5, 90, 90);
+        text-shadow: 2px 2px grey;
+      }
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
 
+      }
+      body {
+        background-color: blanchedalmond;
+      }
+      th, td {
+        padding: 15px;
+      }
+      tr {
+        width: 85px;
+      }
+      td {
+        width: 85px; padding-bottom: 100px; height: 0;
+      }
+      table {
+        margin-left: auto; margin-right: auto;
+        background-color: white;
+      }
+    </style>
+
+  </head>
+  <body>
+    <h1>
+      <strong>TIC-TAC-TOE</strong>
+     </h1>
+     <table>
+      <td id = "squareOne" onclick= "handleClickOne()"></td>
+      <td id = "squareTwo"onclick= "handleClickTwo()"></td>
+      <td id = "squareThree"onclick= "handleClickThree()"></td>
+    </tr>
+    <tr>
+      <td id = "squareFour"onclick="handleClickFour()"></td>
+      <td id = "squareFive"onclick="handleClickFive()"></td>
+      <td id = "squareSix"onclick="handleClickSix()"></td>
+    </tr>
+    <tr>
+      <td id = "squareSeven"onclick="handleClickSeven()"></td>
+      <td id = "squareEight"onclick="handleClickEight()"></td>
+      <td id = "squareNine"onclick="handleClickNine()"></td>
+    </table>
+     <script src="app.js"></script>
+  </body>
+</html>
 
