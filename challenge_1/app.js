@@ -1,189 +1,76 @@
 let squares = document.querySelectorAll ("td");
 let counter = 0;
+let tableObject = {};
+const player1 = 'X';
+const player2 = 'O';
+let currentPlayer = player1;
+
+let changePlayer = function() {
+  if (currentPlayer === player1) {
+    currentPlayer = player2;
+  } else {
+    currentPlayer = player1;
+  }
+  let node = document.createElement("p");
+  let text = document.createTextNode(`Player ${currentPlayer}'s turn`);
+  node.appendChild(text);
+  document.querySelector(".currentMove").appendChild(node);
+}
+
+let checkIfWinner = function() {
+  console.log('Checking if Winner...')
+}
+
+let handleClick = function(event) {
+  console.log(event.target);
+  let currentSquareIndex = event.target.id;
+  if (tableObject[currentSquareIndex]) {
+    return;
+  } else {
+    tableObject[currentSquareIndex] = currentPlayer;
+    console.log(tableObject);
+    checkIfWinner();
+    changePlayer();
+  }
+}
+
+
+
+let restartGame = function() {
+  console.log('Restarting Game')
+}
+
+
+
+
 squares.forEach(function (square) {
-  square.addEventListener("click", function() {
-    let node = document.createElement("p");
-    if (counter%2 === 1) {
-      let text = document.createTextNode("X");
-      node.appendChild(text);
-    } else {
-      let text = document.createTextNode("0");
-      node.appendChild(text);
-    }
-    if (!square.hasChildNodes()) {
-    square.appendChild(node);
-    counter++;
-    }
-    console.log("Square Clicked");
-  })
-})
+  square.addEventListener("click", handleClick)
+});
+
+document.querySelector('.restart').addEventListener("click", restartGame);
+    // let node = document.createElement("p");
+    // if (counter%2 === 0) {
+    //   let text = document.createTextNode("X");
+    //   node.appendChild(text);
+    // } else {
+    //   let text = document.createTextNode("0");
+    //   node.appendChild(text);
+    // }
+    // if (!square.hasChildNodes()) {
+    // square.appendChild(node);
+    // console.log(square);
+    // tableArray.push(square);
+    // console.log(tableArray);
+    // counter++;
+    // }
+    // console.log("Square Clicked");
+    // if (tableArray.length === 9) {
+    //   alert('Cat\'s Game!')
+    //   return;
+    // } else {
+    //   console.log('Checking if winner...')
+    // }
 
 
 
-
-
-
-
-
-
-
-
-//   let isClicked = false;
-//   let playerOneClicked = false;
-//   let playerTwoClicked = false;
-
-//   handleClickOne = function()  {
-//     const body = document.body;
-//     const square1 = document.getElementById("squareOne");
-//     if (!square1.hasChildNodes()) {
-//       isClicked = true;
-//       var node = document.createElement("p");
-//       if (isClicked) {
-//       var text = document.createTextNode("X");
-//       playerOneClicked = true;
-//       } else {
-//         var text = document.createTextNode("O");
-//         playerTwoClicked = true;
-//       }
-//       node.appendChild(text);
-//       document.getElementById("squareOne").appendChild(node);
-//    }
-// }
-
-
-// var handleClickTwo = function() {
-//   const body = document.body;
-//   const square2 = document.getElementById("squareTwo");
-//   if (!square2.hasChildNodes()) {
-
-//     isClicked = true;
-//   var node = document.createElement("p");
-//   if (isClicked) {
-//     var text = document.createTextNode("X");
-//     } else {
-//       var text = document.createTextNode("O");
-//     }  node.appendChild(text);
-//   document.getElementById("squareTwo").appendChild(node);
-//   }
-// }
-
-// var handleClickThree = function() {
-//   const body = document.body;
-//   const square3 = document.getElementById("squareThree");
-//   if (!square3.hasChildNodes()) {
-//     isClicked= true;
-//     var node = document.createElement("p");
-//     if (isClicked) {
-//     var text = document.createTextNode("X");
-//     } else {
-//       var text = document.createTextNode("O");
-//     }  node.appendChild(text);
-//   document.getElementById("squareThree").appendChild(node);
-//   }
-// }
-
-// var handleClickFour = function() {
-//   const body = document.body;
-//   const square4 = document.getElementById("squareFour");
-//   if (!square4.hasChildNodes()) {
-//     isClicked= true;
-//   var node = document.createElement("p");
-//   if (isClicked) {
-//     var text = document.createTextNode("X");
-//     } else {
-//       var text = document.createTextNode("O");
-//     }  node.appendChild(text);
-//   document.getElementById("squareFour").appendChild(node);
-//   }
-// }
-
-// var handleClickFive = function() {
-//   const body = document.body;
-//   const square5 = document.getElementById("squareFive");
-//   if (!square5.hasChildNodes()) {
-
-//   numClicks++;
-//   var node = document.createElement("p");
-//   if (numClicks % 2 === 1) {
-//     var text = document.createTextNode("X");
-//     } else {
-//       var text = document.createTextNode("O");
-//     }  node.appendChild(text);
-//   document.getElementById("squareFive").appendChild(node);
-//   } else {
-//     numClicks--;
-//   }
-// }
-
-// var handleClickSix = function() {
-//   const body = document.body;
-//   const square6 = document.getElementById("squareSix");
-//   if (!square6.hasChildNodes()) {
-
-//   numClicks++;
-//   var node = document.createElement("p");
-//   if (numClicks % 2 === 1) {
-//     var text = document.createTextNode("X");
-//     } else {
-//       var text = document.createTextNode("O");
-//     }  node.appendChild(text);
-//   document.getElementById("squareSix").appendChild(node);
-//   } else {
-//     numClicks--;
-//   }
-// }
-
-// var handleClickSeven = function() {
-//   const body = document.body;
-//   const square7 = document.getElementById("squareSeven");
-//   if (!square7.hasChildNodes()) {
-
-//   numClicks++;
-//   var node = document.createElement("p");
-//   if (numClicks % 2 === 1) {
-//     var text = document.createTextNode("X");
-//     } else {
-//       var text = document.createTextNode("O");
-//     }  node.appendChild(text);
-//   document.getElementById("squareSeven").appendChild(node);
-//   } else {
-//     numClicks--;
-//   }
-// }
-
-// var handleClickEight = function() {
-//   const body = document.body;
-//   const square8 = document.getElementById("squareEight");
-//   if (!square8.hasChildNodes()) {
-
-//   numClicks++;
-//   var node = document.createElement("p");
-//   if (numClicks % 2 === 1) {
-//     var text = document.createTextNode("X");
-//     } else {
-//       var text = document.createTextNode("O");
-//     }  node.appendChild(text);
-//   document.getElementById("squareEight").appendChild(node);
-//   } else {
-//     numClicks--;
-//   }
-// }
-
-// var handleClickNine = function() {
-//   const body = document.body;
-//   const square9 = document.getElementById("squareNine");
-//   if (!square9.hasChildNodes()) {
-
-//   numClicks++;
-//   var node = document.createElement("p");
-//   if (numClicks % 2 === 1) {
-//     var text = document.createTextNode("X");
-//     } else {
-//       var text = document.createTextNode("O");
-//     }  node.appendChild(text);
-//   document.getElementById("squareNine").appendChild(node);
-//   } else {
-//     numClicks--;
-//   }
-// }
 
