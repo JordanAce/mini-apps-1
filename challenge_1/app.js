@@ -1,10 +1,10 @@
 let squares = document.querySelectorAll ("td");
-let counter = 0;
 let tableObject = {};
 const player1 = 'X';
 const player2 = 'O';
 let currentPlayer = player1;
 
+// change who's turn it is and log that information to the screen
 let changePlayer = function() {
   if (currentPlayer === player1) {
     currentPlayer = player2;
@@ -17,17 +17,30 @@ let changePlayer = function() {
   document.querySelector(".currentMove").appendChild(node);
 }
 
+// check to see if there is a winner or if all squares are clicked (cat's game)
 let checkIfWinner = function() {
-  console.log('Checking if Winner...')
+  if (Object.keys(tableObject).length === 9) {
+    alert('Cat\'s Game!!')
+  }
 }
 
+// handle the click of a square
 let handleClick = function(event) {
-  console.log(event.target);
+  let text = '';
   let currentSquareIndex = event.target.id;
   if (tableObject[currentSquareIndex]) {
     return;
   } else {
     tableObject[currentSquareIndex] = currentPlayer;
+    let node = document.createElement("p");
+    if (currentPlayer === player1) {
+      text = document.createTextNode(`X`);
+    } else {
+      text = document.createTextNode(`O`);
+    }
+    node.appendChild(text);
+    document.getElementById(event.target.id).appendChild(node);
+
     console.log(tableObject);
     checkIfWinner();
     changePlayer();
@@ -35,41 +48,20 @@ let handleClick = function(event) {
 }
 
 
-
+// handle the click of the restart button
 let restartGame = function() {
   console.log('Restarting Game')
 }
 
 
 
-
+// event listeners
 squares.forEach(function (square) {
   square.addEventListener("click", handleClick)
 });
 
 document.querySelector('.restart').addEventListener("click", restartGame);
-    // let node = document.createElement("p");
-    // if (counter%2 === 0) {
-    //   let text = document.createTextNode("X");
-    //   node.appendChild(text);
-    // } else {
-    //   let text = document.createTextNode("0");
-    //   node.appendChild(text);
-    // }
-    // if (!square.hasChildNodes()) {
-    // square.appendChild(node);
-    // console.log(square);
-    // tableArray.push(square);
-    // console.log(tableArray);
-    // counter++;
-    // }
-    // console.log("Square Clicked");
-    // if (tableArray.length === 9) {
-    //   alert('Cat\'s Game!')
-    //   return;
-    // } else {
-    //   console.log('Checking if winner...')
-    // }
+
 
 
 
