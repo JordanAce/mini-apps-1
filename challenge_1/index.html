@@ -4,31 +4,49 @@
     <style>
       h1 {
         text-align: center;
-        font-size: 75px;
+        font-size: 60px;
         color: rgb(5, 90, 90);
         text-shadow: 2px 2px grey;
       }
-      table, th, td {
+      table, tr, td {
         border: 1px solid black;
         border-collapse: collapse;
         text-align: center;
-
+        table-layout: fixed;
       }
       body {
         background-color: blanchedalmond;
       }
-      th, td {
+      tr, td {
         padding: 15px;
+        table-layout: fixed;
+
       }
       tr {
-        width: 85px;
+        width: 85px; height:0;
+        table-layout: fixed;
+
       }
       td {
-        width: 85px; padding-bottom: 100px; height: 0;
+        width: 70px; padding-bottom: 100px; height: 0;
+        table-layout: fixed;
       }
       table {
         margin-left: auto; margin-right: auto;
         background-color: white;
+        table-layout: fixed;
+
+      }
+      .currentMove {
+        text-align: center;
+        font-size: 50px;
+      }
+      button {
+        border-radius: 12px;
+        background-color: cadetblue;
+        padding-left: 15px;
+        padding-right: 15px;
+        size: 100px;
       }
     </style>
 
