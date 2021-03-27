@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style>
-    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
     <h1> JSON to CSV Generator</h1>
-    <form method ="POST" action ="/upload_json" enctype ="application/json">
+    <form>
       <label for="json">JSON:</label><br>
       <textarea type="textarea" name ="json" rows ="50" cols = "100"></textarea><br><br>
       <input type= "submit" value="Submit">
     </form>
     <h2>CSV:</h2>
+    <div id = "CSV"></div>
     <script src="app.js"></script>
     </body>
 </html>
