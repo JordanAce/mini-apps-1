@@ -6,14 +6,14 @@
   </head>
   <body>
     <h1> JSON to CSV Generator</h1>
-    <form>
-      <input form method = "POST" action = "/upload_json" type ="text" id="json"><br>
-      <input type= "submit" value="Submit" id = "submit">
+    <form method ="POST" action ="/upload_json" enctype ="application/json">
+      <label for="json">JSON:</label><br>
+      <textarea type="textarea" name ="json" rows ="50" cols = "100"></textarea><br><br>
+      <input type= "submit" value="Submit">
     </form>
-    <h2></h2>
-
+    <h2>CSV:</h2>
     <script src="app.js"></script>
-  </body>
+    </body>
 </html>
 
 
