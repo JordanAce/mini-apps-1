@@ -18,10 +18,9 @@ res.render('index');
 })
 
 app.post('/', (req, res) => {
-let data = req.body.json.split(',');
-let parsedData = JSON.parse(data);
-res.send(parsedData);
-res.end();
+  let data = JSON.stringify(req.body);
+  res.send(JSON.stringify(data));
+  res.end();
 });
 
 
