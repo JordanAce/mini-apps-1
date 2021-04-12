@@ -1,22 +1,40 @@
 
-class App extends React.Component {
+class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      form : ''
+      information : false
     }
+    this.handleCheckoutClick = this.handleCheckoutClick.bind(this);
   }
 
+  handleCheckoutClick() {
+    this.setState ({
+      information: true
+    })
+  }
+
+
+
   render() {
-    return(
+    const proceed = this.state.information;
+    let button;
+    if (!proceed) {
+      button = <button onClick = {this.handleCheckoutClick.bind(this)} />
+    }
+
+    return (
       <div>
         <h2>
-TESTING AGAIN        </h2>
+         <Information proceed = {proceed} />
+         {button}
+        </h2>
       </div>
-      )
+    )
   }
 }
-const TestList = function() {
+
+const Information = function() {
   return(
     <div>
       <ul>
@@ -34,8 +52,8 @@ const ThisRepo = function() {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById("app"))
-ReactDOM.render(<TestList />, document.getElementById("testlist"))
+ReactDOM.render(<HomePage />, document.getElementById("homepage"))
+ReactDOM.render(<Information />, document.getElementById("information"))
 ReactDOM.render(<ThisRepo />, document.getElementById("isstupid"))
 
 
