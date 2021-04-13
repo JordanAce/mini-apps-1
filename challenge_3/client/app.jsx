@@ -47,6 +47,9 @@ class HomePage extends React.Component {
       ccinfo: false,
       confirmation: false
     })
+    return (
+      <HomePage />
+    )
   }
 
   render() {
@@ -56,7 +59,7 @@ class HomePage extends React.Component {
       button = <button onClick = {this.handleCheckoutClick.bind(this)} />
     } else {
       return(
-        <Information proceed = {this.state.information} address = {this.state.address} ccinfo = {this.state.ccinfo} confirmation = {this.state.confirmation} handleInformationClick = {this.handleInformationClick} handleAddressClick = {this.handleAddressClick}/>
+        <Information proceed = {this.state.information} address = {this.state.address} ccinfo = {this.state.ccinfo} confirmation = {this.state.confirmation} handleInformationClick = {this.handleInformationClick} handleAddressClick = {this.handleAddressClick} handleCCInfoClick = {this.handleCCInfoClick} handleConfirmationClick ={this.handleConfirmationClick}/>
       )
     }
 
@@ -73,8 +76,12 @@ class HomePage extends React.Component {
 
 const Information = function(props) {
     let button;
-    if (props.proceed) {
+    if(!props.address) {
       button = <button onClick = {props.handleInformationClick.bind(this)} />
+    } else {
+      return (
+        <Address proceed = {props.information} address = {props.address} ccinfo = {props.ccinfo} confirmation = {props.confirmation} handleInformationClick = {props.handleInformationClick} handleAddressClick = {props.handleAddressClick} handleCCInfoClick = {props.handleCCInfoClick} handleConfirmationClick = {props.handleConfirmationClick}/>
+      )
     }
   return(
     <div>
@@ -84,21 +91,48 @@ const Information = function(props) {
   )
 }
 
-const Address = function() {
-  return(
-  <div>ADDRESS FORMS</div>
-  )
+const Address = function(props) {
+  let button;
+  if(!props.ccinfo) {
+    button = <button onClick = {props.handleAddressClick.bind(this)} />
+  } else {
+    return (
+      <CCInfo proceed = {props.information} address = {props.address} ccinfo = {props.ccinfo} confirmation = {props.confirmation} handleInformationClick = {props.handleInformationClick} handleAddressClick = {props.handleAddressClick} handleCCInfoClick = {props.handleCCInfoClick} handleConfirmationClick ={props.handleConfirmationClick}/>
+    )
+  }
+    return(
+      <div>
+        ADDRESS FORMS
+        {button}
+      </div>
+)
 }
 
-const CCInfo = function() {
-  return(
-  <div>CCInfo FORMS</div>
-  )
+const CCInfo = function(props) {
+  let button;
+  if(!props.confirmation) {
+    button = <button onClick = {props.handleCCInfoClick.bind(this)} />
+  } else {
+    return (
+      <Confirmation proceed = {props.information} address = {props.address} ccinfo = {props.ccinfo} confirmation = {props.confirmation} handleInformationClick = {props.handleInformationClick} handleAddressClick = {props.handleAddressClick} handleCCInfoClick = {props.handleCCInfoClick} handleConfirmationClick = {props.handleConfirmationClick}/>
+    )
+  }
+return(
+  <div>
+    CC Info Forms
+    {button}
+  </div>
+)
 }
 
-const Confirmation = function() {
+const Confirmation = function(props) {
+  let button;
+  button = <button onClick = {props.handleConfirmationClick.bind(this)} />
   return(
-  <div>Confirmation PAGE</div>
+    <div>
+      Confirmation Page
+      {button}
+    </div>
   )
 }
 
