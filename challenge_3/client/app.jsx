@@ -8,8 +8,21 @@ class HomePage extends React.Component {
       address: false,
       ccinfo: false,
       confirmation: false,
-      value : ''
-
+      value : '',
+      id: '',
+      name: '',
+      email: '',
+      password: '',
+      ln1: '',
+      ln2: '',
+      city: '',
+      state: '',
+      zip: '',
+      phonenum: '',
+      ccnum: '',
+      expiration: '',
+      CVV: '',
+      billingzip: ''
     }
     this.handleCheckoutClick = this.handleCheckoutClick.bind(this);
     this.handleInformationClick = this.handleInformationClick.bind(this);
@@ -21,10 +34,12 @@ class HomePage extends React.Component {
 
   //Click handlers
   handleChange(event) {
-    this.setState({value:event.target.value})
+    this.setState({
+      [event.target.name] : event.target.value
+     })
   }
 
-  handleCheckoutClick() {
+  handleCheckoutClick(event) {
     this.setState ({
       information: true
     })
@@ -34,8 +49,6 @@ class HomePage extends React.Component {
     this.setState({
       address: true
     })
-
-    console.log(event)
     $.ajax({
       type: 'POST',
       url: ('/ccinfo'),
@@ -67,7 +80,22 @@ class HomePage extends React.Component {
       information : false,
       address: false,
       ccinfo: false,
-      confirmation: false
+      confirmation: false,
+      value : '',
+      id: '',
+      name: '',
+      email: '',
+      password: '',
+      ln1: '',
+      ln2: '',
+      city: '',
+      state: '',
+      zip: '',
+      phonenum: '',
+      ccnum: '',
+      expiration: '',
+      CVV: '',
+      billingzip: ''
     })
     return (
       <HomePage />
@@ -82,7 +110,7 @@ class HomePage extends React.Component {
       button = <button onClick = {this.handleCheckoutClick.bind(this)}>Checkout</button>
     } else {
       return(
-        <Information proceed = {this.state.information} address = {this.state.address} ccinfo = {this.state.ccinfo} confirmation = {this.state.confirmation} handleInformationClick = {this.handleInformationClick} handleAddressClick = {this.handleAddressClick} handleCCInfoClick = {this.handleCCInfoClick} handleConfirmationClick ={this.handleConfirmationClick} handleChange = {this.handleChange}/>
+        <Information state = {this.state} handleInformationClick = {this.handleInformationClick} handleAddressClick = {this.handleAddressClick} handleCCInfoClick = {this.handleCCInfoClick} handleConfirmationClick ={this.handleConfirmationClick} handleChange = {this.handleChange}/>
       )
     }
 
@@ -99,75 +127,81 @@ class HomePage extends React.Component {
 
 //Enter information then render Address on Next click
 const Information = function(props) {
-    let button;
-
-    if(!props.address) {
+    if(!props.state.address) {
       return(
         <div>
           <h1>
           Enter Your Information:
           </h1><br></br>
           <form onSubmit = {props.handleInformationClick}>
-          Full Name: &nbsp; <input type = "text" id = "name"></input><br></br>
-          E-Mail: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type = "text" id = "email"></input><br></br>
-          Password: &nbsp;&nbsp;  <input type = "text" id = "password"></input><br></br>
-          <input type ="submit" value ="Next" onChange = {props.handleChange}></input>
+          Full Name: &nbsp; <input type = "text" name = "name" value = {props.state.name} onChange = {props.handleChange}></input><br></br>
+          E-Mail: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type = "text" name = "email" value = {props.state.email} onChange = {props.handleChange}></input><br></br>
+          Password: &nbsp;&nbsp;  <input type = "text" name = "password" value = {props.state.password} onChange = {props.handleChange}></input><br></br>
+          <input type ="submit" value ="Next"></input>
           </form>
         </div>
       )
     } else {
       return (
-        <Address proceed = {props.information} address = {props.address} ccinfo = {props.ccinfo} confirmation = {props.confirmation} handleInformationClick = {props.handleInformationClick} handleAddressClick = {props.handleAddressClick} handleCCInfoClick = {props.handleCCInfoClick} handleConfirmationClick = {props.handleConfirmationClick}/>
+        <Address state = {props.state} handleInformationClick = {props.handleInformationClick} handleAddressClick = {props.handleAddressClick} handleCCInfoClick = {props.handleCCInfoClick} handleConfirmationClick = {props.handleConfirmationClick} handleChange = {props.handleChange}/>
       )
     }
 }
 //Enter Address then render CC info on Next click
 const Address = function(props) {
-  let button;
-  if(!props.ccinfo) {
-    button = <button onClick = {props.handleAddressClick.bind(this)}>Next</button>
-  } else {
-    return (
-      <CCInfo proceed = {props.information} address = {props.address} ccinfo = {props.ccinfo} confirmation = {props.confirmation} handleInformationClick = {props.handleInformationClick} handleAddressClick = {props.handleAddressClick} handleCCInfoClick = {props.handleCCInfoClick} handleConfirmationClick ={props.handleConfirmationClick}/>
-    )
-  }
+
+  if(!props.state.ccinfo) {
     return(
       <div>
       <h1>
       Enter Your Address:
       </h1><br></br>
-      Line 1: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type = "text" id = "ln1"></input><br></br>
-      Line 2: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type = "text" id = "ln2"></input><br></br>
-      City: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type = "text" id = "city"></input><br></br>
-      State: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type = "text" id = "state"></input><br></br>
-      Zip Code: &nbsp;&nbsp; <input type = "text" id = "zip"></input><br></br>
-      Phone #: &nbsp;&nbsp;&nbsp;&nbsp; <input type = "text" id = "phonenum"></input><br></br>
-      {button}
+      <form onSubmit = {props.handleAddressClick}>
+      Line 1: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type = "text" name = "ln1" value = {props.state.ln1} onChange = {props.handleChange}></input><br></br>
+
+      Line 2: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type = "text" name = "ln2" value = {props.state.ln2} onChange = {props.handleChange}></input><br></br>
+
+      City: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type = "text" name = "city" value = {props.state.city} onChange = {props.handleChange}></input><br></br>
+
+      State: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type = "text" name = "state" value = {props.state.state} onChange = {props.handleChange}></input><br></br>
+
+      Zip Code: &nbsp;&nbsp; <input type = "text" name = "zip" value = {props.state.zip} onChange = {props.handleChange}></input><br></br>
+
+      Phone #: &nbsp;&nbsp;&nbsp;&nbsp; <input type = "text" name = "phonenum" value = {props.state.phonenum} onChange = {props.handleChange}></input><br></br>
+
+      <input type ="submit" value ="Next"></input>
+      </form>
     </div>
 )
+  } else {
+    return (
+      <CCInfo state = {props.state} handleInformationClick = {props.handleInformationClick} handleAddressClick = {props.handleAddressClick} handleCCInfoClick = {props.handleCCInfoClick} handleConfirmationClick ={props.handleConfirmationClick} handleChange = {props.handleChange}/>
+    )
+  }
 }
 //Enter CC information then render Confirmation page on Next
 const CCInfo = function(props) {
-  let button;
-  if(!props.confirmation) {
-    button = <button onClick = {props.handleCCInfoClick.bind(this)}>Next</button>
+
+  if(!props.state.confirmation) {
+    return(
+      <div>
+          <h1>
+          Enter Your Credit Card Information:
+          </h1><br></br>
+          <form onSubmit = {props.handleCCInfoClick}>
+          Card Number: &nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp; <input type = "text" name = "ccnum" value = {props.state.ccnum} onChange = {props.handleChange}></input><br></br>
+          Expiration MM/DD/YYYY: <input type = "text" name = "expiration" value = {props.state.expiration} onChange = {props.handleChange}></input><br></br>
+          CVV: &nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp; <input type = "text" name = "CVV" value = {props.state.CVV} onChange = {props.handleChange}></input><br></br>
+          Billing ZIP: &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <input type = "text" name = "billingzip" value = {props.state.billingzip} onChange = {props.handleChange}></input><br></br>
+          <input type ="submit" value ="Next"></input>
+          </form>
+        </div>
+    )
   } else {
     return (
-      <Confirmation proceed = {props.information} address = {props.address} ccinfo = {props.ccinfo} confirmation = {props.confirmation} handleInformationClick = {props.handleInformationClick} handleAddressClick = {props.handleAddressClick} handleCCInfoClick = {props.handleCCInfoClick} handleConfirmationClick = {props.handleConfirmationClick}/>
+      <Confirmation state = {props.state} handleInformationClick = {props.handleInformationClick} handleAddressClick = {props.handleAddressClick} handleCCInfoClick = {props.handleCCInfoClick} handleConfirmationClick = {props.handleConfirmationClick} handleChange = {props.handleChange}/>
     )
   }
-return(
-  <div>
-      <h1>
-      Enter Your Credit Card Information:
-      </h1><br></br>
-      Card Number: &nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp; <input type = "text" id = "ln1"></input><br></br>
-      Expiration MM/DD/YYYY: <input type = "text" id = "ln2"></input><br></br>
-      CVV: &nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp; <input type = "text" id = "city"></input><br></br>
-      Billing ZIP: &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <input type = "text" id = "state"></input><br></br>
-      {button}
-    </div>
-)
 }
 //Show confirmation page with summary of information entered, then render HomePage on Purchase click
 const Confirmation = function(props) {
