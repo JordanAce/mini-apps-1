@@ -64,17 +64,6 @@ class HomePage extends React.Component {
       address: true
     })
     let state = this.state;
-    $.ajax({
-      type: 'POST',
-      url: ('/ccinfo'),
-      data: state,
-      success: function (data) {
-        console.log('SUCCESS POST CLICK', data)
-      },
-      error: function (error) {
-        console.log('ERROR POST CLICK')
-      }
-    })
     event.preventDefault();
   }
 
@@ -115,17 +104,6 @@ class HomePage extends React.Component {
       }
     })
 
-    $.ajax({
-      type: 'GET',
-      url: ('/ccinfo'),
-      success: function (data) {
-        console.log('SUCCESS POST CLICK', data)
-
-      },
-      error: function (error) {
-        console.log('ERROR POST CLICK')
-      }
-    })
     event.preventDefault();
   }
 
