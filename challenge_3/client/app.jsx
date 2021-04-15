@@ -114,6 +114,18 @@ class HomePage extends React.Component {
         console.log('ERROR POST CLICK')
       }
     })
+
+    $.ajax({
+      type: 'GET',
+      url: ('/ccinfo'),
+      success: function (data) {
+        console.log('SUCCESS POST CLICK', data)
+
+      },
+      error: function (error) {
+        console.log('ERROR POST CLICK')
+      }
+    })
     event.preventDefault();
   }
 
@@ -255,7 +267,26 @@ const Confirmation = function(props) {
       <h1>
       Confirm your Information:
       </h1><br></br>
+      <ul>
+        <li>Name: {props.state.name}</li>
+        <li>Email: {props.state.email}</li>
+        <li>Password: {props.state.password}</li>
+        <li>Address: {props.state.ln1}&nbsp;{props.state.ln2}&nbsp;{props.state.city},&nbsp;{props.state.state},&nbsp;{props.state.zip}</li>
+        <li>Phone Number: {props.state.phonenum}</li>
+        <li>Credit Card Number: {props.state.ccnum}</li>
+        <li>Expiration Date: {props.state.expiration}</li>
+        <li>CVV: {props.state.CVV}</li>
+        <li>Billing Zip: {props.state.billingzip}</li>
+      </ul>
       {button}
+    </div>
+  )
+}
+
+const ConfirmationEntry = function (props) {
+  return(
+    <div>
+
     </div>
   )
 }

@@ -16,8 +16,21 @@ app.post('/ccinfo', function(req,res) {
   {
     res.send(response);
   })
+  .catch((error) => {
+    console.log('ERROR POSTING TO DATABASE', error)
+  })
 })
 
+app.get('/ccinfo', function (req, res) {
+  return db.show(req.body)
+  .then((response) => {
+    console.log('RETRIEVING DATABASE', response)
+    res.send(response);
+  })
+  .catch((error) =>{
+    console.log('ERROR RETRIEVING DATABASE')
+  })
+})
 
 app.listen(port, () => {
   console.log(`Now listening on port ${port}`)

@@ -34,8 +34,19 @@ let update = (data) => {
   .catch((error) => {
     console.log('ERROR UPDATING DATABSE', error)
   })
-
 }
 
+let show = (data) => {
+  console.log(data);
+  return NewCCUser.find()
+  .then((response) => {
+    return response;
+  })
+
+  .catch((error) => {
+    console.log('ERROR SHOWING DATATBASE', error)
+  })
+
+}
 module.exports.update = update;
-//module.exports.create = create;
+module.exports.show = show;
