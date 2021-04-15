@@ -43,16 +43,31 @@ class HomePage extends React.Component {
     this.setState ({
       information: true
     })
-  }
-
-  handleInformationClick(event) {
-    this.setState({
-      address: true
-    })
+    let state = this.state;
     $.ajax({
       type: 'POST',
       url: ('/ccinfo'),
-      data: event.target.value,
+      data: state,
+      success: function (data) {
+        console.log('SUCCESS POST CLICK')
+      },
+      error: function (error) {
+        console.log('ERROR POST CLICK')
+      }
+    })
+    event.preventDefault();
+  }
+
+
+  handleInformationClick() {
+    this.setState({
+      address: true
+    })
+    let state = this.state;
+    $.ajax({
+      type: 'POST',
+      url: ('/ccinfo'),
+      data: state,
       success: function (data) {
         console.log('SUCCESS POST CLICK')
       },

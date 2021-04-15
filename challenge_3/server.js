@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.post('/ccinfo', function(req,res) {
-  console.log('INSIDE POST', req)
+  db.update(req.body);
 })
 
 
