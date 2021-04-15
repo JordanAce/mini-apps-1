@@ -8,10 +8,7 @@ db.once('open', function () {
 })
 
 const CCUser = new mongoose.Schema({
-  id: {
-    type: Number,
-    unique: true
-  },
+
   name : String,
   email: String,
   password: String,
@@ -30,7 +27,14 @@ const CCUser = new mongoose.Schema({
 const NewCCUser = mongoose.model('ccinfo', CCUser);
 
 let update = (data) => {
-  console.log('DATABASE RECEIVING DATA', {data});
+  return NewCCUser.findOneAndUpdate({name: data.name}, data, {upsert: true, new:true}).exec()
+  .then((response) => {
+    return response;
+  })
+  .catch((error) => {
+    console.log('ERROR UPDATING DATABSE', error)
+  })
+
 }
 
 module.exports.update = update;

@@ -11,7 +11,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.post('/ccinfo', function(req,res) {
-  db.update(req.body);
+  return db.update(req.body)
+  .then((response) =>
+  {
+    res.send(response);
+  })
 })
 
 
