@@ -4,3 +4,5 @@ react-dom.development.js
 app.jsx
 index.js
 webpack.config.js
+bundle.js
+ConnectFourBoard.jsx

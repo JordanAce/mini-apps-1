@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ConnectFourBoard from './/components/ConnectFourBoard.jsx'
 
 
 class App extends React.Component {
@@ -13,9 +14,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <h1>
-          MINI APP 4
-        </h1>
+        <ConnectFourBoard />
       </div>
     )
   }
