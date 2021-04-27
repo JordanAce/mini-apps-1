@@ -6,3 +6,4 @@ index.js
 webpack.config.js
 bundle.js
 ConnectFourBoard.jsx
+PlayerPiece.jsx
